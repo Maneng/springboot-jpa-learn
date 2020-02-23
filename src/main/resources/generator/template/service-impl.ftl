@@ -1,7 +1,7 @@
-package ${basePackage}.core.service.impl;
+package ${basePackage}.service.impl;
 
 import com.maneng.jpa.demo.dto.${modelNameUpperCamel}DTO;
-import com.maneng.jpa.demo.dto.${modelNameUpperCamel}QueryDTO;
+import com.maneng.jpa.demo.entity.${modelNameUpperCamel};
 import com.maneng.jpa.demo.foundation.base.result.Result;
 import com.maneng.jpa.demo.service.${modelNameUpperCamel}Service;
 import com.maneng.jpa.demo.manager.${modelNameUpperCamel}Manager;
@@ -13,10 +13,8 @@ import lombok.extern.slf4j.Slf4j;
  * Created by ${author} on ${date}.
  */
 @Service
+@Slf4j
 public class ${modelNameUpperCamel}ServiceImpl implements ${modelNameUpperCamel}Service {
-
-    @Autowired
-    // private ${modelNameUpperCamel}Mapper ${modelNameLowerCamel}Mapper;
 
     private final ${modelNameUpperCamel}Manager ${modelNameLowerCamel}Manager;
     private final ${modelNameUpperCamel}Assembler ${modelNameLowerCamel}Assembler;
@@ -48,7 +46,7 @@ public class ${modelNameUpperCamel}ServiceImpl implements ${modelNameUpperCamel}
     @Override
     public Result<${modelNameUpperCamel}DTO> get${modelNameUpperCamel}(Long id) {
         Result<${modelNameUpperCamel}DTO> result = new Result<>();
-        ${modelNameUpperCamel}DTO ${modelNameLowerCamel}DTO = ${modelNameLowerCamel}Assembler.assembler${modelNameLowerCamel}DTO(${modelNameLowerCamel}Manager.get${modelNameUpperCamel}(id));
+        ${modelNameUpperCamel}DTO ${modelNameLowerCamel}DTO = ${modelNameLowerCamel}Assembler.assembler${modelNameUpperCamel}DTO(${modelNameLowerCamel}Manager.get${modelNameUpperCamel}(id));
         result.setResult(${modelNameLowerCamel}DTO);
         return result;
     }

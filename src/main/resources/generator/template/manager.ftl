@@ -1,4 +1,5 @@
 package com.maneng.jpa.demo.manager;
+import com.maneng.jpa.demo.entity.${modelNameUpperCamel};
 import com.maneng.jpa.demo.repository.${modelNameUpperCamel}Repository;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +15,16 @@ public class ${modelNameUpperCamel}Manager {
         this.${modelNameLowerCamel}Repository = ${modelNameLowerCamel}Repository;
     }
 
+    public User saveOrUpdate${modelNameUpperCamel}(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+        return ${modelNameLowerCamel}Repository.saveAndFlush(${modelNameLowerCamel});
+    }
 
-    public ${modelNameUpperCamel}DTO get${modelNameUpperCamel}(Long id) {
-        return ${modelNameLowerCamel}Repository.get${modelNameUpperCamel}(id);
+    public ${modelNameUpperCamel} get${modelNameUpperCamel}(Long id) {
+        return ${modelNameLowerCamel}Repository.getOne(id);
+    }
+
+    public void delete(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+        ${modelNameLowerCamel}Repository.delete(${modelNameLowerCamel});
     }
 }
 
