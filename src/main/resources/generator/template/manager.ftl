@@ -15,7 +15,7 @@ public class ${modelNameUpperCamel}Manager {
         this.${modelNameLowerCamel}Repository = ${modelNameLowerCamel}Repository;
     }
 
-    public User saveOrUpdate${modelNameUpperCamel}(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public ${modelNameUpperCamel} saveOrUpdate${modelNameUpperCamel}(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         return ${modelNameLowerCamel}Repository.saveAndFlush(${modelNameLowerCamel});
     }
 
