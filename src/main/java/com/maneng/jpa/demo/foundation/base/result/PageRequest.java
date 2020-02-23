@@ -7,7 +7,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 /**
  * Created by jiangyu on 2016-11-09 17:38.
  */
-public class PageRequest extends SortsRequest {
+public class PageRequest{
 
   private Integer page;
   private Integer pageSize;

@@ -18,7 +18,7 @@ import static com.maneng.jpa.demo.code.ProjectConstant.*;
 public class CodeGenerator {
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");//项目在硬盘上的基础路径
-    private static final String TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/test/resources/generator/template";//模板位置
+    private static final String TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/main/resources/generator/template";//模板位置
 
     private static final String JAVA_PATH = "/src/main/java"; //java文件路径
     private static final String RESOURCES_PATH = "/src/main/resources";//资源文件路径
@@ -27,6 +27,9 @@ public class CodeGenerator {
     private static final String PACKAGE_PATH_SERVICE = packageConvertPath(SERVICE_PACKAGE);//生成的Service存放路径
     private static final String PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(SERVICE_IMPL_PACKAGE);//生成的Service实现存放路径
     private static final String PACKAGE_PATH_CONTROLLER = packageConvertPath(CONTROLLER_PACKAGE);//生成的Controller存放路径
+    private static final String PACKAGE_PATH_MANGER = packageConvertPath(MANAGER_PACKAGE);//生成的Manager存放路径
+    private static final String PACKAGE_PATH_ASSEMBLER = packageConvertPath(ASSEMBLER_PACKAGE);//生成的Assembler存放路径
+    private static final String PACKAGE_PATH_REPOSITORY = packageConvertPath(REPOSITORY_PACKAGE);//生成的Assembler存放路径
 
     private static final String AUTHOR = "maneng";//@author
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
@@ -57,9 +60,34 @@ public class CodeGenerator {
         genDto(tableName, modelName);
         genQueryDto(tableName, modelName);
         genManager(tableName, modelName);
+        genRepository(tableName, modelName);
         genAssembler(tableName, modelName);
         genService(tableName, modelName);
         genController(tableName, modelName);
+    }
+
+    private static void genRepository(String tableName, String modelName) {
+        try {
+            freemarker.template.Configuration cfg = getConfiguration();
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("date", DATE);
+            data.put("author", AUTHOR);
+            String modelNameUpperCamel = StringUtils.isEmpty(modelName) ? tableNameConvertUpperCamel(tableName) : modelName;
+            data.put("modelNameUpperCamel", modelNameUpperCamel);
+            data.put("modelNameLowerCamel", tableNameConvertLowerCamel(tableName));
+            data.put("basePackage", BASE_PACKAGE);
+
+            File file = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_REPOSITORY + modelNameUpperCamel + "Repository.java");
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+            cfg.getTemplate("repository.ftl").process(data,
+                    new FileWriter(file));
+            System.out.println(modelNameUpperCamel + "Repository.java 生成成功");
+        } catch (Exception e) {
+            throw new RuntimeException("生成repository失败", e);
+        }
     }
 
     private static void genAssembler(String tableName, String modelName) {
@@ -74,7 +102,7 @@ public class CodeGenerator {
             data.put("modelNameLowerCamel", tableNameConvertLowerCamel(tableName));
             data.put("basePackage", BASE_PACKAGE);
 
-            File file = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_DTO + modelNameUpperCamel + "Assembler.java");
+            File file = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_ASSEMBLER + modelNameUpperCamel + "Assembler.java");
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
@@ -98,7 +126,7 @@ public class CodeGenerator {
             data.put("modelNameLowerCamel", tableNameConvertLowerCamel(tableName));
             data.put("basePackage", BASE_PACKAGE);
 
-            File file = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_DTO + modelNameUpperCamel + "Manager.java");
+            File file = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_MANGER + modelNameUpperCamel + "Manager.java");
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
@@ -122,13 +150,13 @@ public class CodeGenerator {
             data.put("modelNameLowerCamel", tableNameConvertLowerCamel(tableName));
             data.put("basePackage", BASE_PACKAGE);
 
-            File file = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_DTO + modelNameUpperCamel + "DTO.java");
+            File file = new File(PROJECT_PATH + JAVA_PATH + PACKAGE_PATH_DTO + modelNameUpperCamel + "QueryDTO.java");
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
             cfg.getTemplate("query-dto.ftl").process(data,
                     new FileWriter(file));
-            System.out.println(modelNameUpperCamel + "DTO.java 生成成功");
+            System.out.println(modelNameUpperCamel + "QueryDTO.java 生成成功");
         } catch (Exception e) {
             throw new RuntimeException("生成query-dto失败", e);
         }

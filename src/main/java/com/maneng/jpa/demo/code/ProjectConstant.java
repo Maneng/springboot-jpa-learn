@@ -24,6 +24,18 @@ public final class ProjectConstant {
      **/
     public static final String SERVICE_PACKAGE = BASE_PACKAGE + ".service";
     /**
+     * 生成的Manager所在包
+     **/
+    public static final String MANAGER_PACKAGE = BASE_PACKAGE + ".manager";
+    /**
+     * 生成的Repository所在包
+     **/
+    public static final String REPOSITORY_PACKAGE = BASE_PACKAGE + ".repository";
+    /**
+     * 生成的Assembler所在包
+     **/
+    public static final String ASSEMBLER_PACKAGE = BASE_PACKAGE + ".assembler";
+    /**
      * 生成的ServiceImpl所在包
      **/
     public static final String SERVICE_IMPL_PACKAGE = SERVICE_PACKAGE + ".impl";
