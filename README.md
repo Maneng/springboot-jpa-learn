@@ -9,6 +9,8 @@ springboot-jpa-learn
 - java8
 - swagger2
 - JustAuth 第三方登录
+- WxJava https://github.com/Wechat-Group/WxJava https://github.com/binarywang/weixin-java-pay-demo
+- alipay https://github.com/egzosn/pay-java-parent https://github.com/alipay/alipay-sdk-java-all
 
 
 ## 功能实现
