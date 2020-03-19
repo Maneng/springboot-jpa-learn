@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 * Created by maneng on 2020/02/23.
 */
 @RestController
-@RequestMapping("//order")
+@RequestMapping("/order")
 public class OrderController {
 
     private final OrderService orderService;
