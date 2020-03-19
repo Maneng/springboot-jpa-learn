@@ -16,7 +16,6 @@ import javax.persistence.Table;
 @Table(name = "order_info")
 @EqualsAndHashCode(callSuper = true)
 public class Order extends LongTimestampedEntity {
-
     /**
      * 用户名
      */
