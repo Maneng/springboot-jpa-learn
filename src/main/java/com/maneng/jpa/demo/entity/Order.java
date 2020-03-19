@@ -2,6 +2,7 @@ package com.maneng.jpa.demo.entity;
 
 import com.maneng.jpa.demo.foundation.persistence.LongTimestampedEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -12,7 +13,13 @@ import javax.persistence.Table;
  */
 @Data
 @Entity
-@Table(name = "order")
+@Table(name = "order_info")
+@EqualsAndHashCode(callSuper = true)
 public class Order extends LongTimestampedEntity {
+
+    /**
+     * 用户名
+     */
+    private String username;
 
 }

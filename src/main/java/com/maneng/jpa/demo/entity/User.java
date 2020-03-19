@@ -12,7 +12,6 @@ import javax.persistence.Table;
  * @date created at 2020/2/23 3:18 下午
  */
 @Data
-@Table(name = "user")
 @Entity
 @EqualsAndHashCode(callSuper = true)
 public class User extends LongTimestampedEntity {
