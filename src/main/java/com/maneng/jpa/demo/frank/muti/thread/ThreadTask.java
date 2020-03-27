@@ -28,7 +28,7 @@ public class ThreadTask {
 
         List<Callable<JobResult>> jobList = Lists.newArrayList();
 
-        for (Integer i = 0; i < threadSize; i++) {
+        for (Integer i = 1; i <= threadSize; i++) {
             JobParam jobParam = initJobParam(i);
             ThreadJob threadJob = new ThreadJob(jobParam);
             jobList.add(threadJob);
@@ -51,14 +51,19 @@ public class ThreadTask {
             System.out.println("process thread cost time: " + seconds);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (!executorService.isShutdown()) {
+                System.out.println("shot down thread");
+                executorService.shutdown();
+            }
         }
 
     }
 
     private JobParam initJobParam(Integer i) {
         JobParam jobParam = new JobParam();
-        jobParam.setMinId((long) i);
-        jobParam.setMaxId((long) (i * 10 - 1));
+        jobParam.setMinId((long) i * 10);
+        jobParam.setMaxId((long) ((i + 1) * 10 - 1));
         jobParam.setThreadQueryParam(new ThreadQueryParam());
         return jobParam;
     }

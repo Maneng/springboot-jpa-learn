@@ -29,7 +29,8 @@ public class ThreadJob implements Callable<JobResult> {
     @Override
     public JobResult call() throws Exception {
         JobResult jobResult = new JobResult();
-        jobResult.setJobName(Thread.currentThread().getName());
+        String name = Thread.currentThread().getName();
+        jobResult.setJobName(name);
         jobResult.setMinId(this.minId);
         jobResult.setMaxId(this.maxId);
         //当前任务处理的数据量
@@ -37,10 +38,14 @@ public class ThreadJob implements Callable<JobResult> {
         //处理成功的数据量
         int totalSuccessProcessCount = 0;
 
+        for (long i = minId; i <= maxId; i++) {
+            System.out.println("线程: " + name + ", 正在处理第 " + i + " 条数据");
+        }
         Long maxId = threadQueryParam.getMaxId();
 
         jobResult.setProcessCount(processCount);
         jobResult.setSuccessProcessCount(totalSuccessProcessCount);
+        System.out.println("线程: " + name + "处理完成");
         return jobResult;
     }
 }
