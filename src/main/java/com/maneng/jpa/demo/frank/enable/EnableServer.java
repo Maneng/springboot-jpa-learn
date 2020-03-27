@@ -1,4 +1,4 @@
-package com.maneng.jpa.demo.config.enable;
+package com.maneng.jpa.demo.frank.enable;
 
 import org.springframework.context.annotation.Import;
 

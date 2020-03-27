@@ -1,8 +1,8 @@
 package com.maneng.jpa.demo;
 
-import com.maneng.jpa.demo.config.enable.EnableServer;
-import com.maneng.jpa.demo.config.enable.Server;
-import com.maneng.jpa.demo.config.enable.ServerType;
+import com.maneng.jpa.demo.frank.enable.EnableServer;
+import com.maneng.jpa.demo.frank.enable.Server;
+import com.maneng.jpa.demo.frank.enable.ServerType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
