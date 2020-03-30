@@ -2,6 +2,7 @@ package com.maneng.jpa.demo.controller;
 
 import com.maneng.jpa.demo.dto.UserDTO;
 import com.maneng.jpa.demo.foundation.base.result.Result;
+import com.maneng.jpa.demo.frank.event.HelloEventService;
 import com.maneng.jpa.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final HelloEventService helloEventService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, HelloEventService helloEventService) {
         this.userService = userService;
+        this.helloEventService = helloEventService;
     }
 
     @PostMapping
@@ -32,5 +35,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     public Result<Void> deleteUser(@PathVariable(name = "id") Long id) {
         return userService.deleteUser(id);
+    }
+
+    @GetMapping("/say")
+    public Result<String> sayHello(@RequestParam String from, @RequestParam String content) {
+        helloEventService.sayHello(from, content);
+        return new Result<>("success");
     }
 }
